@@ -48,7 +48,7 @@ def test_restaurar_banco_falha_pg_restore_mantem_sql(pasta_com_sql, monkeypatch)
     resultado = restaurar_banco.restaurar_banco("NORTE")
 
     assert resultado is False
-    assert (pasta_com_sql / "dump.sql").exists()  # não apaga se a restauração falhou
+    assert (pasta_com_sql / "dump.sql").exists()
 
 
 def test_restaurar_banco_sem_pg_restore_instalado(pasta_com_sql, monkeypatch):

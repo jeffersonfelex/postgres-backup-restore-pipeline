@@ -18,15 +18,12 @@ class Config:
     DB_USER = os.getenv("db_user")
     DB_PASS = os.getenv("db_pass")
     PG_RESTORE_PATH = os.getenv("pg_restore_path")
-    DB_CONTROLE = os.getenv("db_controle", "PIPELINE_CONTROLE")  # guarda estado e log das execuções agendadas
+    DB_CONTROLE = os.getenv("db_controle", "PIPELINE_CONTROLE")
 
-    TEAMS_WEBHOOK_URL = os.getenv("teams_webhook_url")  # opcional; sem ela, não notifica
+    TEAMS_WEBHOOK_URL = os.getenv("teams_webhook_url")
 
-    # arquivo remoto modificado há menos que isso ainda pode estar sendo enviado; fica pra próxima verificação
     MINUTOS_ESTABILIZACAO = 30
 
-    # palavra-chave no nome do arquivo remoto -> pasta local / sufixo do banco restaurado.
-    # Configurável no .env (bases=NORTE,SUL,CENTRO); cada base vira o banco <db_prefixo><BASE>.
     MAPEAMENTO_NOMES = {
         base.strip(): base.strip()
         for base in os.getenv("bases", "NORTE,SUL,CENTRO").split(",")
@@ -45,11 +42,8 @@ class Config:
 
     KNOWN_HOSTS_PATH = os.path.join(os.path.dirname(__file__), "known_hosts")
     LOCK_FILE_PATH = os.path.join(os.path.dirname(__file__), "pipeline.lock")
-    # o lock é renovado a cada minuto enquanto a execução vive; sem renovação por este tempo,
-    # considera o lock travado (crash) e destrava sozinho
     LOCK_TIMEOUT_SEGUNDOS = 60 * 60
 
-    # (nome_do_atributo, valor_atual) para as variáveis obrigatórias
     _OBRIGATORIAS = (
         "HOST", "USUARIO", "SENHA",
         "LOCAL_DIR", "REMOTE_DIR",

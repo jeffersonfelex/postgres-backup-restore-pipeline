@@ -24,7 +24,7 @@ def estado(monkeypatch):
 
 
 def test_detecta_apenas_arquivos_novos(estado):
-    estado["NORTE"] = (100, ANTIGO)  # igual ao remoto: já processado
+    estado["NORTE"] = (100, ANTIGO)
     remotos = {
         "BKP_NORTE_PROD.zip": (100, ANTIGO),
         "BKP_SUL_PROD.zip": (200, ANTIGO),
@@ -32,7 +32,7 @@ def test_detecta_apenas_arquivos_novos(estado):
 
     novos = agendado.escolher_arquivos_novos(remotos, AGORA)
 
-    assert list(novos) == ["SUL"]  # NORTE já feito, CENTRO ainda não chegou
+    assert list(novos) == ["SUL"]
 
 
 def test_arquivo_com_mesmo_nome_mas_mtime_diferente_e_novo(estado):
@@ -109,7 +109,7 @@ def test_executar_notifica_resumo_so_quando_processou_algo(monkeypatch):
 
     _preparar_executar(monkeypatch, {}, {})
     agendado.executar()
-    notificar.assert_not_called()  # nada novo: sem mensagem diária
+    notificar.assert_not_called()
 
     novos = {"NORTE": ("norte.zip", 1, ANTIGO), "CENTRO": ("centro.zip", 2, ANTIGO)}
     _preparar_executar(monkeypatch, novos, {"NORTE": (True, "ok"), "CENTRO": (False, "falha no download")})

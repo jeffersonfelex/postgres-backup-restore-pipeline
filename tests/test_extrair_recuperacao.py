@@ -30,7 +30,7 @@ def test_processar_arquivo_zip_sem_sql_mantem_zip(tmp_path):
     resultado = processar_arquivo_zip(caminho_zip)
 
     assert resultado is False
-    assert os.path.exists(caminho_zip)  # zip inválido não deve ser apagado
+    assert os.path.exists(caminho_zip)
 
 
 def test_processar_arquivo_zip_corrompido_retorna_false(tmp_path):
@@ -41,4 +41,4 @@ def test_processar_arquivo_zip_corrompido_retorna_false(tmp_path):
     resultado = processar_arquivo_zip(caminho_zip)
 
     assert resultado is False
-    assert os.path.exists(caminho_zip)  # preserva o arquivo original para inspeção
+    assert os.path.exists(caminho_zip)

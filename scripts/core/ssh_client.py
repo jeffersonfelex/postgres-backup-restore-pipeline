@@ -9,12 +9,7 @@ log = get_logger("ssh")
 
 
 class PoliticaTofu(paramiko.MissingHostKeyPolicy):
-    """Confia e fixa a chave do host apenas no primeiro contato (Trust On First Use).
-
-    Em conexões seguintes, o paramiko compara automaticamente contra a chave
-    já salva em known_hosts e derruba a conexão (BadHostKeyException) se ela
-    mudou — o que pode indicar um ataque man-in-the-middle.
-    """
+    """Fixa a host key no primeiro contato (TOFU); depois, uma chave diferente derruba a conexão."""
 
     def missing_host_key(self, client, hostname, key):
         log.warning(

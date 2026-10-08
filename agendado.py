@@ -1,7 +1,4 @@
-"""Verificação periódica: processa cada base  assim que o arquivo novo aparece.
-
-Pensado para rodar todo dia pelo agendador. Se nada mudou no servidor, termina em segundos.
-"""
+"""Verificação periódica: processa cada base assim que um backup novo aparece no servidor."""
 import sys
 from datetime import datetime, timedelta, timezone
 

@@ -7,7 +7,7 @@ def test_validar_passa_com_tudo_preenchido(monkeypatch):
     for nome in Config._OBRIGATORIAS:
         monkeypatch.setattr(Config, nome, "valor")
 
-    Config.validar()  # não deve levantar exceção
+    Config.validar()
 
 
 def test_validar_falha_e_lista_variaveis_faltando(monkeypatch):

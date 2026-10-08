@@ -42,8 +42,7 @@ def processar_arquivo_zip(caminho_zip: str) -> bool:
 
 
 def _limpar_sql_residual(pasta: str, caminho_subpasta: str) -> None:
-    # remove .sql de execuções anteriores para não deixar restaurar_banco.py
-    # encontrar um arquivo velho caso a extração desta rodada falhe
+    """Remove .sql de rodadas anteriores, para nunca restaurar um arquivo velho se a extração falhar."""
     for arquivo in os.listdir(caminho_subpasta):
         if arquivo.endswith(".sql"):
             caminho_sql_antigo = os.path.join(caminho_subpasta, arquivo)

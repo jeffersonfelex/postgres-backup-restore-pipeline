@@ -10,7 +10,7 @@ from scripts.core.utils import encontrar_arquivo_por_extensao
 log = get_logger("restauracao")
 
 
-_ERRO_DE_ROLE = re.compile(r'role ".+" .*exist')  # "não existe" (pt) / "does not exist" (en)
+_ERRO_DE_ROLE = re.compile(r'role ".+" .*exist')
 
 
 def _somente_erros_de_role(stderr: str) -> bool:

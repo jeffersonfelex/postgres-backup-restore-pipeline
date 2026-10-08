@@ -126,7 +126,7 @@ def test_baixar_arquivo_arquivo_remoto_sumiu_nao_tenta_de_novo(monkeypatch):
     resultado = baixar_recuperacao.baixar_arquivo("BKP_NORTE_PROD.zip")
 
     assert resultado is False
-    assert mock_conexao.call_count == 1  # não deve gastar tentativas com erro definitivo
+    assert mock_conexao.call_count == 1
 
 
 def test_baixar_arquivo_recupera_apos_falha_de_conexao(monkeypatch):

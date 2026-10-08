@@ -49,7 +49,7 @@ def test_garantir_pasta_cria_diretorio(tmp_path):
 def test_garantir_pasta_nao_falha_se_ja_existir(tmp_path):
     alvo = tmp_path / "existente"
     os.makedirs(alvo)
-    garantir_pasta(str(alvo))  # não deve levantar exceção
+    garantir_pasta(str(alvo))
 
 
 def test_encontrar_arquivo_por_extensao_encontra(tmp_path):

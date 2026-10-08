@@ -10,14 +10,10 @@ class PipelineEmExecucaoError(Exception):
 
 @contextlib.contextmanager
 def lock_execucao(caminho_lock: str, timeout_segundos: int, intervalo_renovacao: float = 60):
-    """Impede que duas execuções do pipeline rodem ao mesmo tempo.
+    """Impede execuções simultâneas; o lock é renovado enquanto a execução vive.
 
-    Usa a idade do arquivo de lock (em vez de checar o PID) porque
-    verificar se um processo está vivo por PID no Windows via os.kill
-    pode acabar matando um processo com PID reaproveitado.
-
-    Enquanto a execução vive, uma thread renova o mtime do lock; assim uma execução
-    longa (downloads de horas) nunca é confundida com um lock velho de crash.
+    Usa a idade do arquivo em vez do PID: no Windows, checar o PID com os.kill pode atingir
+    um processo com PID reaproveitado.
     """
     if os.path.exists(caminho_lock):
         idade = time.time() - os.path.getmtime(caminho_lock)
@@ -27,7 +23,7 @@ def lock_execucao(caminho_lock: str, timeout_segundos: int, intervalo_renovacao:
                 f"em '{caminho_lock}'). Se tiver certeza de que não há outra execução "
                 f"rodando, apague o arquivo de lock manualmente."
             )
-        os.remove(caminho_lock)  # lock velho demais, provavelmente sobra de um crash
+        os.remove(caminho_lock)
 
     with open(caminho_lock, "w") as f:
         f.write(str(os.getpid()))

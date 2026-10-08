@@ -150,7 +150,7 @@ def iniciar_downloads():
         ssh_lista.close()
     except Exception as erro:
         log.error(f"Erro ao tentar ler a pasta no servidor: {erro}")
-        raise  # deixa o main.py saber que a etapa falhou
+        raise
 
     arquivos_validos = sorted(tamanhos.keys(), key=lambda a: tamanhos[a], reverse=True)
 
