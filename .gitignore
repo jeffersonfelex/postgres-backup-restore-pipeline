@@ -1,0 +1,19 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Segredos e estado local
+.env
+known_hosts
+pipeline.lock
+
+# Dados e logs
+logs/
+*.zip
+*.sql
+
+# IDE/OS
+.vscode/
+.idea/
+Thumbs.db
